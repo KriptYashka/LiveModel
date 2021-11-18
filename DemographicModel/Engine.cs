@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DemographicModel
 {
-    class Engine
+    public class Engine
     {
         public delegate void PersonHandler();
         public event PersonHandler events;

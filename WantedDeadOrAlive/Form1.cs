@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using DemographicModel;
 
 namespace WantedDeadOrAlive
 {
     public partial class Form1 : Form
     {
+        private Engine engine;
         public Form1()
         {
             InitializeComponent();

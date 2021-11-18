@@ -81,5 +81,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemographicModel3\DemographicModel.csproj">
+      <Project>{607a114f-2d57-42e1-afe9-583d1b6fdb3d}</Project>
+      <Name>DemographicModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
