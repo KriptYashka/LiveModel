@@ -14,9 +14,9 @@ namespace DemographicModel
         private int age { get; set; }
         public int dateBirth { get; set; }
         public int dateDeath { get; set; }
-        private Sex sex;
-        private double birth_procentage, death_procentage;
+        public Sex sex { get; set; }
         public bool isAlive;
+        private double birth_procentage, death_procentage;
 
         public Person(int age, Sex sex, int year)
         {
@@ -28,16 +28,18 @@ namespace DemographicModel
             birth_procentage = (sex == Sex.female && (age >= 18 && age <= 45) ? 0.151 : 0);
         }
 
+        ~Person()
+        {
+            deathEvent?.Invoke(this);
+        }
+
         public void NextYear() // Обработчик события
         {
-            var rand = new Random();
-            double p_bitrh = rand.NextDouble();
-            double p_death = rand.NextDouble();
-            if (p_bitrh <= birth_procentage)
+            if (StatRandom.IsEventHappened(birth_procentage))
             {
                 birthEvent?.Invoke(this);
             }
-            if (p_death <= death_procentage)
+            if (StatRandom.IsEventHappened(death_procentage))
             {
                 deathEvent?.Invoke(this);
                 return;
@@ -79,4 +81,5 @@ namespace DemographicModel
 
 
     }
+
 }
