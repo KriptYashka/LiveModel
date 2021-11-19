@@ -9,16 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DemographicModel;
+using DemographicFileOperations;
 
 namespace WantedDeadOrAlive
 {
     public partial class Form1 : Form
     {
         private Engine engine;
+        private FilesController fc;
         public Form1()
         {
             InitializeComponent();
             BarExample();
+            engine = new Engine();
+            fc = new FilesController();
+            engine.initAgeProbability = fc.GetInitProbability();
+            engine.deathProbability = fc.GetDeathRules();
+            engine.ModelTime(2000, 2021, 10000000);
         }
 
         public void BarExample()

@@ -85,8 +85,12 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemographicModel3\DemographicModel.csproj">
-      <Project>{607a114f-2d57-42e1-afe9-583d1b6fdb3d}</Project>
+    <ProjectReference Include="..\DemographicFileOperations\DemographicFileOperations.csproj">
+      <Project>{f5ffa4cc-515e-4d74-aa7e-93808708b00b}</Project>
+      <Name>DemographicFileOperations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemographicModel\DemographicModel.csproj">
+      <Project>{3b0e8727-8e00-48ef-8346-37fcec821823}</Project>
       <Name>DemographicModel</Name>
     </ProjectReference>
   </ItemGroup>
