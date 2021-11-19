@@ -13,7 +13,6 @@ namespace DemographicModel
         public event PersonHandler events;
         private List<Person> populate;
         public Dictionary<int, double> initAgeProbability { set; get; }
-        public List<List<double>> deathProbability { set; get; }
         private int currentYear { get; set; }
 
         private int group = 1000; // По сколько человек будем группировать
@@ -29,7 +28,10 @@ namespace DemographicModel
             count /= group;
             currentYear = from;
             InitPerson(count);
-            count = 2;
+            for (int year = from; year <= to; ++year)
+            {
+                NextYear();
+            }
         }
 
         private void InitPerson(int count)
@@ -46,15 +48,41 @@ namespace DemographicModel
                 int currentCount = Convert.ToInt32(p * (count / group));
                 for (int i = 0; i <= currentCount / 2; ++i)
                 {
-                    populate.Add(new Person(age, Sex.male));
+                    AddPerson(age, Sex.male);
                 }
                 for (int i = (currentCount / 2) + 1; i < currentCount; ++i)
                 {
-                    populate.Add(new Person(age, Sex.female));
+                    AddPerson(age, Sex.female);
                 }
             } 
         }
-    }
 
-    
+        private void AddPerson(int age, Sex sex)
+        {
+            Person human = new Person(age, sex, currentYear);
+            events += human.NextYear;
+            human.birthEvent += Birth;
+            human.deathEvent += Death;
+            populate.Add(human);
+        }
+
+        public void Birth(Person sender)
+        {
+            var rand = new Random();
+            double p = rand.NextDouble();
+            Sex sex = (p <= 0.45 ? Sex.male : Sex.female);
+            AddPerson(0, sex);
+        }
+
+        public void Death(Person sender)
+        {
+            sender.isAlive = false;
+            sender.dateDeath = currentYear;
+            // Отписываем
+            events -= sender.NextYear;
+            sender.birthEvent -= Birth;
+            sender.birthEvent -= Death;
+            populate.Remove(sender);
+        }
+    }
 }

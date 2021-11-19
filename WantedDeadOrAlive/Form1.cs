@@ -24,8 +24,7 @@ namespace WantedDeadOrAlive
             engine = new Engine();
             fc = new FilesController();
             engine.initAgeProbability = fc.GetInitProbability();
-            engine.deathProbability = fc.GetDeathRules();
-            engine.ModelTime(2000, 2021, 10000000);
+            engine.ModelTime(2000, 2021, 1000000);
         }
 
         public void BarExample()
