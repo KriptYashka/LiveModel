@@ -50,8 +50,7 @@ namespace DemographicModel
                 gmale.Add(currentYear, maleCount);
                 gfemale.Add(currentYear, femaleCount);
                 NextYear();
-                int p = Convert.ToInt32(proc * (currentYear - from));
-                loading?.Invoke(p);
+                loading?.Invoke(Convert.ToInt32(proc * (currentYear - from)));
             }
             data.Add(TypeData.general, general);
             data.Add(TypeData.generalMale, gmale);
