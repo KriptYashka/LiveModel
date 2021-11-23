@@ -52,10 +52,32 @@ namespace DemographicModel
                 NextYear();
                 loading?.Invoke(Convert.ToInt32(proc * (currentYear - from)));
             }
+            Dictionary<int, int> ageMale = new Dictionary<int, int>();
+            Dictionary<int, int> ageFemale = new Dictionary<int, int>();
+
+            ageMale.Add(Convert.ToInt32(TypeData.youngMale),
+                populate.Where(t => currentYear - t.dateBirth <= 18).Count());
+            ageMale.Add(Convert.ToInt32(TypeData.middleMale),
+                populate.Where(t => currentYear - t.dateBirth > 18 && currentYear - t.dateBirth <= 45).Count());
+            ageMale.Add(Convert.ToInt32(TypeData.adultMale),
+                populate.Where(t => currentYear - t.dateBirth > 45 && currentYear - t.dateBirth <= 65).Count());
+            ageMale.Add(Convert.ToInt32(TypeData.oldMale),
+                populate.Where(t => currentYear - t.dateBirth > 65 && currentYear - t.dateBirth <= 100).Count());
+
+            ageFemale.Add(Convert.ToInt32(TypeData.youngFemale),
+                populate.Where(t => currentYear - t.dateBirth <= 18).Count());
+            ageFemale.Add(Convert.ToInt32(TypeData.middleFemale),
+                populate.Where(t => currentYear - t.dateBirth > 18 && currentYear - t.dateBirth <= 45).Count());
+            ageFemale.Add(Convert.ToInt32(TypeData.adultFemale),
+                populate.Where(t => currentYear - t.dateBirth > 45 && currentYear - t.dateBirth <= 65).Count());
+            ageFemale.Add(Convert.ToInt32(TypeData.oldFemale),
+                populate.Where(t => currentYear - t.dateBirth > 65 && currentYear - t.dateBirth <= 100).Count());
+
             data.Add(TypeData.general, general);
             data.Add(TypeData.generalMale, gmale);
             data.Add(TypeData.generalFemale, gfemale);
-
+            data.Add(TypeData.generalFemale, ageMale);
+            data.Add(TypeData.generalFemale, ageFemale);
         }
 
         private void InitPerson(int count)
