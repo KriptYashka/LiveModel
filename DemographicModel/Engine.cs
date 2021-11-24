@@ -56,28 +56,28 @@ namespace DemographicModel
             Dictionary<int, int> ageFemale = new Dictionary<int, int>();
 
             ageMale.Add(Convert.ToInt32(TypeData.youngMale),
-                populate.Where(t => currentYear - t.dateBirth <= 18).Count());
+                populate.Where(t => t.age <= 18 && t.isAlive).Count());
             ageMale.Add(Convert.ToInt32(TypeData.middleMale),
-                populate.Where(t => currentYear - t.dateBirth > 18 && currentYear - t.dateBirth <= 45).Count());
+                populate.Where(t => t.age > 18 && t.age <= 45 && t.isAlive).Count());
             ageMale.Add(Convert.ToInt32(TypeData.adultMale),
-                populate.Where(t => currentYear - t.dateBirth > 45 && currentYear - t.dateBirth <= 65).Count());
+                populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
             ageMale.Add(Convert.ToInt32(TypeData.oldMale),
-                populate.Where(t => currentYear - t.dateBirth > 65 && currentYear - t.dateBirth <= 100).Count());
+                populate.Where(t => t.age > 65 && t.age <= 100 && t.isAlive).Count());
 
             ageFemale.Add(Convert.ToInt32(TypeData.youngFemale),
-                populate.Where(t => currentYear - t.dateBirth <= 18).Count());
+                populate.Where(t => t.age <= 18 && t.isAlive).Count());
             ageFemale.Add(Convert.ToInt32(TypeData.middleFemale),
-                populate.Where(t => currentYear - t.dateBirth > 18 && currentYear - t.dateBirth <= 45).Count());
+                populate.Where(t => t.age > 18 && t.age <= 45 && t.isAlive).Count());
             ageFemale.Add(Convert.ToInt32(TypeData.adultFemale),
-                populate.Where(t => currentYear - t.dateBirth > 45 && currentYear - t.dateBirth <= 65).Count());
+                populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
             ageFemale.Add(Convert.ToInt32(TypeData.oldFemale),
-                populate.Where(t => currentYear - t.dateBirth > 65 && currentYear - t.dateBirth <= 100).Count());
+                populate.Where(t => t.age > 65 && t.age <= 100 && t.isAlive).Count());
 
             data.Add(TypeData.general, general);
             data.Add(TypeData.generalMale, gmale);
             data.Add(TypeData.generalFemale, gfemale);
-            data.Add(TypeData.generalFemale, ageMale);
-            data.Add(TypeData.generalFemale, ageFemale);
+            data.Add(TypeData.ageMale, ageMale);
+            data.Add(TypeData.ageFemale, ageFemale);
         }
 
         private void InitPerson(int count)

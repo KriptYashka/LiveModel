@@ -11,7 +11,7 @@ namespace DemographicModel
         public delegate void PersonHandler(Person sender);
         public event PersonHandler birthEvent, deathEvent;
 
-        private int age { get; set; }
+        public int age { get; set; }
         public int dateBirth { get; set; }
         public int dateDeath { get; set; }
         public Sex sex { get; set; }
@@ -20,7 +20,7 @@ namespace DemographicModel
 
         public Person(int age, Sex sex, int year)
         {
-            this.dateBirth = year;
+            this.dateBirth = year - age;
             this.isAlive = true;
             this.age = age;
             this.sex = sex;

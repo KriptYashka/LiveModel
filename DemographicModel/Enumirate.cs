@@ -25,5 +25,7 @@ namespace DemographicModel
         middleFemale = 8,
         adultFemale = 9,
         oldFemale = 10,
+        ageMale = 11,
+        ageFemale = 12,
     }
 }
