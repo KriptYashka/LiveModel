@@ -62,7 +62,7 @@ namespace DemographicModel
             ageMale.Add(Convert.ToInt32(TypeData.adultMale),
                 populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
             ageMale.Add(Convert.ToInt32(TypeData.oldMale),
-                populate.Where(t => t.age > 65 && t.age <= 100 && t.isAlive).Count());
+                populate.Where(t => t.age > 65 && t.isAlive).Count());
 
             ageFemale.Add(Convert.ToInt32(TypeData.youngFemale),
                 populate.Where(t => t.age <= 18 && t.isAlive).Count());
@@ -71,7 +71,7 @@ namespace DemographicModel
             ageFemale.Add(Convert.ToInt32(TypeData.adultFemale),
                 populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
             ageFemale.Add(Convert.ToInt32(TypeData.oldFemale),
-                populate.Where(t => t.age > 65 && t.age <= 100 && t.isAlive).Count());
+                populate.Where(t => t.age > 65 && t.isAlive).Count());
 
             data.Add(TypeData.general, general);
             data.Add(TypeData.generalMale, gmale);
