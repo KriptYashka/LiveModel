@@ -17,6 +17,9 @@ namespace DemographicModel
         public Sex sex { get; set; }
         public bool isAlive;
         private double birth_procentage, death_procentage;
+        private readonly int young = Convert.ToInt32(Generation.young);
+        private readonly int middle = Convert.ToInt32(Generation.middle);
+        private const double birthProcentage = 0.151;
 
         public Person(int age, Sex sex, int year)
         {
@@ -25,12 +28,7 @@ namespace DemographicModel
             this.age = age;
             this.sex = sex;
             this.death_procentage = GetDeathChance(age);
-            birth_procentage = (sex == Sex.female && (age >= 18 && age <= 45) ? 0.151 : 0);
-        }
-
-        ~Person()
-        {
-            deathEvent?.Invoke(this);
+            birth_procentage = (sex == Sex.female && (age >= young && age <= middle) ? birthProcentage : 0);
         }
 
         public void NextYear() // Обработчик события
@@ -46,7 +44,7 @@ namespace DemographicModel
             }
             
             age++;
-            birth_procentage = (sex == Sex.female && (age >= 18 && age <= 45)?0.151:0);
+            birth_procentage = (sex == Sex.female && (age >= young && age <= middle) ? birthProcentage : 0);
             death_procentage = GetDeathChance(age);
         }
 

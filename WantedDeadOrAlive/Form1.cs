@@ -37,6 +37,10 @@ namespace WantedDeadOrAlive
             this.chartGeneral.Titles.Clear();
             this.chartGeneral.Titles.Add("General Population");
             Series series = this.chartGeneral.Series.Add("General Population");
+            this.chartGeneral.ChartAreas.First().AxisY.Minimum = general.Values.Min() * 0.8;
+            this.chartGeneral.ChartAreas.First().AxisY.Maximum = general.Values.Max() * 1.1;
+            this.chartGeneral.ChartAreas.First().AxisX.Minimum = general.Keys.Min();
+            this.chartGeneral.ChartAreas.First().AxisX.Maximum = general.Keys.Max() + ((general.Keys.Max() - general.Keys.Min()) % 5 == 0 ? 0 : 5 - (general.Keys.Max() - general.Keys.Min()) % 5);
             series.BorderWidth = 3;
             series.ChartType = SeriesChartType.Spline;
 
@@ -57,6 +61,11 @@ namespace WantedDeadOrAlive
             Series seriesFemale = this.chartSex.Series.Add("General female population");
             seriesFemale.Color = Color.Red;
             seriesFemale.BorderWidth = 2;
+            this.chartSex.ChartAreas.First().AxisY.Minimum = male.Values.Min() * 0.8;
+            this.chartSex.ChartAreas.First().AxisY.Maximum = male.Values.Max() * 1.1;
+            this.chartSex.ChartAreas.First().AxisX.Minimum = male.Keys.Min();
+            this.chartSex.ChartAreas.First().AxisX.Maximum = male.Keys.Max() + ((male.Keys.Max() - male.Keys.Min()) % 5 == 0 ? 0 : 5 - (male.Keys.Max() - male.Keys.Min()) % 5);
+
             seriesFemale.ChartType = SeriesChartType.Spline;
 
             foreach (int year in male.Keys)
@@ -71,6 +80,7 @@ namespace WantedDeadOrAlive
             this.chartMale.Series.Clear();
             this.chartMale.Titles.Clear();
             this.chartMale.Titles.Add("Male ages");
+            this.chartMale.ChartAreas.First().AxisY.Maximum = data.Values.Max() * 1.1;
             Series series;
             series = this.chartMale.Series.Add("Young");
             series.Points.Add(data[Convert.ToInt32(TypeData.youngMale)]);
@@ -87,6 +97,7 @@ namespace WantedDeadOrAlive
             this.chartFemale.Series.Clear();
             this.chartFemale.Titles.Clear();
             this.chartFemale.Titles.Add("Female ages");
+            this.chartFemale.ChartAreas.First().AxisY.Maximum = data.Values.Max() * 1.1;
             Series series;
             series = this.chartFemale.Series.Add("Young");
             series.Points.Add(data[Convert.ToInt32(TypeData.youngFemale)]);
@@ -108,7 +119,15 @@ namespace WantedDeadOrAlive
                 return;
             }
             int population = Convert.ToInt32(textBoxPopulate.Text);
-            engine.ModelTime(from, to, population);
+            try
+            {
+                engine.ModelTime(from, to, population);
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            
             DrawGeneral(engine.GetData(TypeData.general));
             DrawSex(engine.GetData(TypeData.generalMale), engine.GetData(TypeData.generalFemale));
             DrawBarMale(engine.GetData(TypeData.ageMale));

@@ -16,18 +16,16 @@ namespace DemographicModel
         private List<Person> populate;
         public Dictionary<int, double> initAgeProbability { set; get; }
         private int currentYear { get; set; }
-
-        private int group; // По сколько человек будем группировать
+        private const double birthMaleProbability = 0.45;
+        private const int group = 1000; // По сколько человек будем группировать
         Dictionary<TypeData, Dictionary<int, int>> data;
 
         public Engine()
         {
             data = new Dictionary<TypeData, Dictionary<int, int>>();
-            group = 1000;
         }
         public void NextYear()
         {
-            currentYear++;
             events?.Invoke();
         }
 
@@ -46,32 +44,36 @@ namespace DemographicModel
             {
                 int maleCount = populate.Where(t => t.sex == Sex.male && t.isAlive).Count();
                 int femaleCount = populate.Where(t => t.sex == Sex.female && t.isAlive).Count();
-                general.Add(currentYear, maleCount + femaleCount);
-                gmale.Add(currentYear, maleCount);
-                gfemale.Add(currentYear, femaleCount);
+                general.Add(currentYear, (maleCount + femaleCount) * group);
+                gmale.Add(currentYear, maleCount * group);
+                gfemale.Add(currentYear, femaleCount * group);
                 NextYear();
                 loading?.Invoke(Convert.ToInt32(proc * (currentYear - from)));
             }
             Dictionary<int, int> ageMale = new Dictionary<int, int>();
             Dictionary<int, int> ageFemale = new Dictionary<int, int>();
 
+            int young = Convert.ToInt32(Generation.young);
+            int middle = Convert.ToInt32(Generation.middle);
+            int adult = Convert.ToInt32(Generation.adult);
+
             ageMale.Add(Convert.ToInt32(TypeData.youngMale),
-                populate.Where(t => t.age <= 18 && t.isAlive).Count());
+                populate.Where(t => t.age <= young && t.isAlive && t.sex == Sex.male).Count() * group);
             ageMale.Add(Convert.ToInt32(TypeData.middleMale),
-                populate.Where(t => t.age > 18 && t.age <= 45 && t.isAlive).Count());
+                populate.Where(t => t.age > young && t.age <= middle && t.isAlive && t.sex == Sex.male).Count() * group);
             ageMale.Add(Convert.ToInt32(TypeData.adultMale),
-                populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
+                populate.Where(t => t.age > middle && t.age <= adult && t.isAlive && t.sex == Sex.male).Count() * group);
             ageMale.Add(Convert.ToInt32(TypeData.oldMale),
-                populate.Where(t => t.age > 65 && t.isAlive).Count());
+                populate.Where(t => t.age > adult && t.isAlive && t.sex == Sex.male).Count() * group);
 
             ageFemale.Add(Convert.ToInt32(TypeData.youngFemale),
-                populate.Where(t => t.age <= 18 && t.isAlive).Count());
+                populate.Where(t => t.age <= young && t.isAlive && t.sex == Sex.female).Count() * group);
             ageFemale.Add(Convert.ToInt32(TypeData.middleFemale),
-                populate.Where(t => t.age > 18 && t.age <= 45 && t.isAlive).Count());
+                populate.Where(t => t.age > young && t.age <= middle && t.isAlive && t.sex == Sex.female).Count() * group);
             ageFemale.Add(Convert.ToInt32(TypeData.adultFemale),
-                populate.Where(t => t.age > 45 && t.age <= 65 && t.isAlive).Count());
+                populate.Where(t => t.age > middle && t.age <= adult && t.isAlive && t.sex == Sex.female).Count() * group);
             ageFemale.Add(Convert.ToInt32(TypeData.oldFemale),
-                populate.Where(t => t.age > 65 && t.isAlive).Count());
+                populate.Where(t => t.age > adult && t.isAlive && t.sex == Sex.female).Count() * group);
 
             data.Add(TypeData.general, general);
             data.Add(TypeData.generalMale, gmale);
@@ -93,8 +95,6 @@ namespace DemographicModel
             }
             populate.Clear();
             events = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
             foreach (int age in initAgeProbability.Keys)
             {
                 double p = initAgeProbability[age];
@@ -121,7 +121,7 @@ namespace DemographicModel
 
         public void Birth(Person sender)
         {
-            Sex sex = (StatRandom.IsEventHappened(0.45) ? Sex.male : Sex.female);
+            Sex sex = (StatRandom.IsEventHappened(birthMaleProbability) ? Sex.male : Sex.female);
             AddPerson(0, sex);
         }
 
@@ -132,7 +132,7 @@ namespace DemographicModel
             // Отписываем
             events -= sender.NextYear;
             sender.birthEvent -= Birth;
-            sender.birthEvent -= Death;
+            sender.deathEvent -= Death;
         }
 
         public Dictionary<int, int> GetData(TypeData type)

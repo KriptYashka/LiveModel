@@ -29,18 +29,18 @@ namespace WantedDeadOrAlive
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend13 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartGeneral = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnStart = new System.Windows.Forms.Button();
             this.textBoxFromYear = new System.Windows.Forms.TextBox();
@@ -63,16 +63,16 @@ namespace WantedDeadOrAlive
             // 
             this.chartGeneral.BackColor = System.Drawing.Color.Silver;
             this.chartGeneral.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea13.Name = "ChartArea1";
-            this.chartGeneral.ChartAreas.Add(chartArea13);
-            legend13.Name = "Legend1";
-            this.chartGeneral.Legends.Add(legend13);
+            chartArea1.Name = "ChartArea1";
+            this.chartGeneral.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartGeneral.Legends.Add(legend1);
             this.chartGeneral.Location = new System.Drawing.Point(12, 158);
             this.chartGeneral.Name = "chartGeneral";
-            series13.ChartArea = "ChartArea1";
-            series13.Legend = "Legend1";
-            series13.Name = "Series1";
-            this.chartGeneral.Series.Add(series13);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartGeneral.Series.Add(series1);
             this.chartGeneral.Size = new System.Drawing.Size(639, 300);
             this.chartGeneral.TabIndex = 0;
             this.chartGeneral.Text = "chart1";
@@ -97,7 +97,7 @@ namespace WantedDeadOrAlive
             this.textBoxFromYear.Name = "textBoxFromYear";
             this.textBoxFromYear.Size = new System.Drawing.Size(100, 29);
             this.textBoxFromYear.TabIndex = 2;
-            this.textBoxFromYear.Text = "1970";
+            this.textBoxFromYear.Text = "1971";
             this.textBoxFromYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxToYear
@@ -115,16 +115,16 @@ namespace WantedDeadOrAlive
             // 
             this.chartSex.BackColor = System.Drawing.Color.Silver;
             this.chartSex.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea14.Name = "ChartArea1";
-            this.chartSex.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.chartSex.Legends.Add(legend14);
+            chartArea2.Name = "ChartArea1";
+            this.chartSex.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartSex.Legends.Add(legend2);
             this.chartSex.Location = new System.Drawing.Point(12, 464);
             this.chartSex.Name = "chartSex";
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.chartSex.Series.Add(series14);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartSex.Series.Add(series2);
             this.chartSex.Size = new System.Drawing.Size(639, 300);
             this.chartSex.TabIndex = 4;
             this.chartSex.Text = "chart1";
@@ -133,16 +133,16 @@ namespace WantedDeadOrAlive
             // 
             this.chartMale.BackColor = System.Drawing.Color.Silver;
             this.chartMale.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea15.Name = "ChartArea1";
-            this.chartMale.ChartAreas.Add(chartArea15);
-            legend15.Name = "Legend1";
-            this.chartMale.Legends.Add(legend15);
+            chartArea3.Name = "ChartArea1";
+            this.chartMale.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartMale.Legends.Add(legend3);
             this.chartMale.Location = new System.Drawing.Point(657, 158);
             this.chartMale.Name = "chartMale";
-            series15.ChartArea = "ChartArea1";
-            series15.Legend = "Legend1";
-            series15.Name = "Series1";
-            this.chartMale.Series.Add(series15);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartMale.Series.Add(series3);
             this.chartMale.Size = new System.Drawing.Size(429, 300);
             this.chartMale.TabIndex = 5;
             this.chartMale.Text = "chart2";
@@ -151,16 +151,16 @@ namespace WantedDeadOrAlive
             // 
             this.chartFemale.BackColor = System.Drawing.Color.Silver;
             this.chartFemale.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
-            chartArea16.Name = "ChartArea1";
-            this.chartFemale.ChartAreas.Add(chartArea16);
-            legend16.Name = "Legend1";
-            this.chartFemale.Legends.Add(legend16);
+            chartArea4.Name = "ChartArea1";
+            this.chartFemale.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartFemale.Legends.Add(legend4);
             this.chartFemale.Location = new System.Drawing.Point(657, 464);
             this.chartFemale.Name = "chartFemale";
-            series16.ChartArea = "ChartArea1";
-            series16.Legend = "Legend1";
-            series16.Name = "Series1";
-            this.chartFemale.Series.Add(series16);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartFemale.Series.Add(series4);
             this.chartFemale.Size = new System.Drawing.Size(429, 300);
             this.chartFemale.TabIndex = 6;
             this.chartFemale.Text = "chart3";

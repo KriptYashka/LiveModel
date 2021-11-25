@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace DemographicModel
 {
+
+    public enum Generation
+    {
+        young = 18,
+        middle = 45,
+        adult = 65,
+    }
     public enum Sex
     {
         male = 0,

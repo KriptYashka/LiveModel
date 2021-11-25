@@ -7,7 +7,10 @@ namespace DemographicFileOperations
 {
     public class FilesController
     {
-        public Dictionary<int, double> GetInitProbability(string path = "../../../InitialAge.csv")
+        private const string pathInit = "../../../InitialAge.csv";
+        private const string pathDeath = "../../../DeathRules.csv";
+
+        public Dictionary<int, double> GetInitProbability(string path = pathInit)
         {
             Dictionary<int, double> ageProbability = new Dictionary<int, double>();
             string[] lines = File.ReadAllLines(path, Encoding.UTF8);
@@ -27,7 +30,7 @@ namespace DemographicFileOperations
             return ageProbability;
         }
 
-        public List<List<double>> GetDeathRules(string path = "../../../DeathRules.csv")
+        public List<List<double>> GetDeathRules(string path = pathDeath)
         {
             List<List<double>> deathData = new List<List<double>>();
             string[] lines = File.ReadAllLines(path, Encoding.UTF8);
@@ -46,6 +49,8 @@ namespace DemographicFileOperations
                     deathData.Add(new List<double>() { age_start, age_end, probability_male, probability_female });
                 }
             }
+            if (deathData.Count == 0) 
+                throw new Exception("Некорректный файл");
             return deathData;
         }
     }
